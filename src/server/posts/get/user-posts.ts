@@ -1,6 +1,6 @@
 export const getUserPostsData = async (id: string) => {
   const res = await fetch(
-    `https://jsonplaceholder.typicode.com/posts?userId=${id}`
+    `https://jsonplaceholder.typicode.com/posts?userId=${id}&_start=0&_limit=9`
   );
 
   if (!res.ok) {
