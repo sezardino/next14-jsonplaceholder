@@ -1,6 +1,7 @@
 import { Typography } from "@/components/base/Typography";
+import { List } from "@/components/modules/shared/List";
+import { UserCard } from "@/components/modules/user/UserCard";
 import { getUsersData } from "@/server";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 
 const UsersPage = async () => {
@@ -12,15 +13,13 @@ const UsersPage = async () => {
     <>
       <Typography styling="h1">Users Page</Typography>
 
-      <ul>
+      <List className="mt-4">
         {users.map((user) => (
           <li key={user.id}>
-            <Link href={`/users/${user.id}`}>
-              <Typography level="span">{user.name}</Typography>
-            </Link>
+            <UserCard user={user} />
           </li>
         ))}
-      </ul>
+      </List>
     </>
   );
 };

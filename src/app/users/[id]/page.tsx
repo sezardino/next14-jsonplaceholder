@@ -1,5 +1,6 @@
 import { Typography } from "@/components/base/Typography";
 import { PostCard } from "@/components/modules/post/PostCard";
+import { List } from "@/components/modules/shared/List";
 import { getUserData, getUserPostsData, getUsersData } from "@/server";
 import { Metadata } from "next";
 import Link from "next/link";
@@ -27,13 +28,13 @@ const UserPage: FC<Params> = async ({ params: { id } }) => {
         <Typography styling="h2">{user.name}</Typography>
       </header>
 
-      <ul className="mt-4 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <List className="mt-4">
         {userPosts.map((post) => (
           <li key={post.id}>
             <PostCard post={post} />
           </li>
         ))}
-      </ul>
+      </List>
     </>
   );
 };
