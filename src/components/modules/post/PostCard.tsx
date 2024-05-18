@@ -34,7 +34,7 @@ const PostCardComponent: ForwardRefRenderFunction<
         <CardDescription>{post.body}</CardDescription>
       </CardContent>
       <CardFooter className="mt-auto flex flex-row justify-between gap-3">
-        <Button asChild>
+        <Button variant="link" asChild>
           <Link href={`/users/${post.userId}`}>
             <Typography styling="small">See all user posts</Typography>
           </Link>
