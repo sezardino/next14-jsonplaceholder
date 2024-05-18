@@ -34,3 +34,20 @@ type Post = {
   title: string;
   body: string;
 };
+
+type WikiResult = {
+  pageid: string;
+  title: string;
+  extract: string;
+  thumbnail?: {
+    source: string;
+    width: number;
+    height: number;
+  };
+};
+
+type WikiSearchResult = {
+  query?: {
+    pages?: Record<string, Result>;
+  };
+};
