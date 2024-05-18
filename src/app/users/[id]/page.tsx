@@ -1,7 +1,9 @@
 import { Typography } from "@/components/base/Typography";
 import { PostCard } from "@/components/modules/post/PostCard";
-import { getUserData, getUserPostsData } from "@/server";
+import { getUserData, getUserPostsData, getUsersData } from "@/server";
+import { Metadata } from "next";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import { FC } from "react";
 
 type Params = {
@@ -13,6 +15,8 @@ type Params = {
 const UserPage: FC<Params> = async ({ params: { id } }) => {
   const user = await getUserData(id);
   const userPosts = await getUserPostsData(id);
+
+  if (!user || !userPosts) return notFound();
 
   return (
     <>
@@ -32,6 +36,25 @@ const UserPage: FC<Params> = async ({ params: { id } }) => {
       </ul>
     </>
   );
+};
+
+export const generateMetadata = async (params: Params): Promise<Metadata> => {
+  const user = await getUserData(params.params.id);
+
+  if (!user) return { title: "User not found" };
+
+  return {
+    title: user.name,
+    description: user.email,
+  };
+};
+
+export const generateStaticParams = async () => {
+  const users = await getUsersData();
+
+  if (!users) return [];
+
+  return users.map((user) => ({ params: { id: user.id.toString() } }));
 };
 
 export default UserPage;

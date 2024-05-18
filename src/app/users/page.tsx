@@ -1,9 +1,12 @@
 import { Typography } from "@/components/base/Typography";
 import { getUsersData } from "@/server";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
 const UsersPage = async () => {
   const users = await getUsersData();
+
+  if (!users) return notFound();
 
   return (
     <>

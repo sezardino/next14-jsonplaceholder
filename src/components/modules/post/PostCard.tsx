@@ -1,4 +1,5 @@
 import { Typography } from "@/components/base/Typography";
+import { Button } from "@/components/ui/Button";
 import {
   Card,
   CardContent,
@@ -7,7 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/Card";
-import { Button } from "@/components/ui/button";
+
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { ComponentProps, ForwardRefRenderFunction, forwardRef } from "react";

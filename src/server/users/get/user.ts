@@ -1,9 +1,9 @@
-export const getUserData = async (id: string) => {
-  const res = await fetch(`https://jsonplaceholder.typicode.com/users/${id}`);
+export const getUserData = async (id: string): Promise<User | undefined> => {
+  const res = await fetch(`https://jsonplaceholder.typicode.com/users/${id}`, {
+    next: { revalidate: 60 },
+  });
 
-  if (!res.ok) {
-    throw new Error("Failed to fetch user data");
-  }
+  if (!res.ok) return undefined;
 
   return res.json();
 };

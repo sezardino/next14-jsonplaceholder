@@ -1,9 +1,9 @@
 export const getUsersData = async () => {
-  const res = await fetch("https://jsonplaceholder.typicode.com/users");
+  const res = await fetch("https://jsonplaceholder.typicode.com/users", {
+    next: { revalidate: 60 },
+  });
 
-  if (!res.ok) {
-    throw new Error("Failed to fetch users data");
-  }
+  if (!res.ok) return undefined;
 
   return (await res.json()) as User[];
 };
